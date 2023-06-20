@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import io from 'socket.io-client';
+import Modal from 'react-modal';
+import '../modalStyles.scss'
 
 const socket = io('http://localhost:8800');
 
@@ -9,6 +11,21 @@ const PageUpload = () => {
     const [category, setCat] = useState([]);
     const [name, setName] = useState([]);
     const [file, setFile] = useState([]);
+    const [isOpenModalErr, setIsOpenModalErr] = useState(false);
+    const [isOpenModalDone, setIsOpenModalDone] = useState(false);
+
+    const closeModalErr = () => {
+        setIsOpenModalErr(false);
+    };
+
+    const closeModalDone = () => {
+        setName('');
+        setCat('');
+        setFile('');
+        setIsOpenModalDone(false);
+    };
+
+
 
     const upload = async () => {
         try {
@@ -24,20 +41,50 @@ const PageUpload = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         const imgUrl = await upload();
-        console.log(imgUrl)
-        try {
-            await axios.post(`http://localhost:8800/api/imgs`, {
-                name,
-                category,
-                img: file ? imgUrl : "",
-            });
-            alert('added a new photo')
-            socket.emit('event', { message: 'Hello from the client' });
-        } catch (error) {
-            console.log(error)
+        if (category.length === 0 || name.length === 0 || file.length === 0) {
+            setIsOpenModalErr(true)
+        } else {
+            try {
+                await axios.post(`http://localhost:8800/api/imgs`, {
+                    name,
+                    category,
+                    img: file ? imgUrl : "",
+                });
+                socket.emit('newImage', { message: 'Hello from the client' });
+                setIsOpenModalDone(true);
+            } catch (error) {
+                console.log(error)
+            }
         }
     };
     
+    const customStylesModalErr = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            transform: 'translate(-50%, -50%)',
+            width: '330px',
+            padding: '20px',
+            backgroundColor: 'beige',
+            borderRadius: '8px',
+        },
+    };
+
+    const customStylesModalDone = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            transform: 'translate(-50%, -50%)',
+            width: '330px',
+            padding: '20px',
+            backgroundColor: 'lightgreen',
+            borderRadius: '8px',
+        },
+    };
 
     return (
         <div className='PageUpload'>
@@ -133,6 +180,26 @@ const PageUpload = () => {
                     <button onClick={handleClick}>Add Image</button>
                 </div>
             </div>
+            <Modal
+                isOpen={isOpenModalErr}
+                onRequestClose={closeModalErr}
+                style={customStylesModalErr}
+            >
+                <div className='Modal'>
+                    <button className='Modal_button' onClick={closeModalErr}>X</button>
+                    <div className='Modal_text_err'>write name, choose category, upload photo before adding</div>
+                </div>
+            </Modal>
+            <Modal
+                isOpen={isOpenModalDone}
+                onRequestClose={closeModalDone}
+                style={customStylesModalDone}
+            >
+                <div className='Modal'>
+                    <button className='Modal_button' onClick={closeModalErr}>X</button>
+                    <div className='Modal_text_done'>Image has been added</div>
+                </div>
+            </Modal>
         </div>
     )
 }

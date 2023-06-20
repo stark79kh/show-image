@@ -42,7 +42,7 @@ const PageDetailImage = () => {
                 </div>
             </div>
             <div className='pageDetail_img'>
-            <img src={`/upload/${detail[0]?.img}`} alt={detail[0]?.name} />
+                <img src={`/upload/${detail[0]?.img}`} alt={detail[0]?.name} />
             </div>
         </div>
     )

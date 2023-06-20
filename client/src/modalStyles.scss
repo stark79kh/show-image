@@ -1,0 +1,29 @@
+.Modal {
+    position: relative;
+    &_text {
+        &_err {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 100%;
+            font-weight: bold;
+            color: red;
+        }
+        &_done {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 100%;
+            font-weight: bold;
+            color: blue;
+        }
+    }
+    &_button {
+        cursor: pointer;
+        position: absolute;
+        top: -25px;
+        right: -15px;
+        font-size: 14px;
+        font-weight: bold;
+        background: transparent;
+        border: none;
+    }
+}

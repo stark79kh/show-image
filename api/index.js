@@ -7,7 +7,12 @@ import multer from "multer";
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+    },
+});
 
 app.use(cors());
 app.use(express.json());
@@ -80,6 +85,10 @@ app.post('/api/imgs', (req, res) => {
 
 io.on("connection", (socket) => {
     console.log("A user connected.");
+
+    socket.on("newImage", (data) => {
+        console.log(data.message);
+    });
 
     socket.on("disconnect", () => {
         console.log("A user disconnected.");
