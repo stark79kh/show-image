@@ -1,0 +1,184 @@
+.app {
+    .container {
+        position: relative;
+        padding-bottom: 20px;
+        overflow: hidden;
+
+        .Navbar {
+            &_container {
+                width: 100%;
+                position: fixed;
+                background-color: beige;
+                padding: 40px 0px 20px 0px;
+                .links {
+                    display: flex;
+                    gap: 10px;
+                    justify-content: center;
+                    .link {
+                        width :max-content;
+                        padding: 5px 10px;
+                        border-radius: 15px;
+                        background-color:deepskyblue;
+                        text-decoration: none;
+                        color: white;
+                        font-weight: bold;
+                        &:hover {
+                            background-color: cornflowerblue;
+                        }
+                        &_all {
+                            color: red;
+                        }
+                    }
+                }
+            }
+        }
+
+        .ShowIMG {
+            margin-top: 91px;
+            height: 88vh;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+            &::-webkit-scrollbar-track {
+                background: #f1f1f1; 
+            }
+            &::-webkit-scrollbar-thumb {
+                background: #888; 
+            }
+            &::-webkit-scrollbar-thumb:hover {
+                background: #555; 
+            }
+            &_box {
+                display: grid;
+                gap: 10px;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                padding: 20px 40px;
+                &_item {
+                    width: 100%;
+                }
+                img {
+                    width: 100%;
+                    height: 250px;
+                    object-fit: cover;
+                }
+            }
+        }
+
+        .PageUpload {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &_box {
+                padding: 10px 30px;
+                width: 400px;
+                height: 500px;
+                border: 1px solid rgb(223, 217, 217);
+                border-radius: 20px;
+                box-shadow: 3px 5px rgb(223, 217, 217);
+                &_tile {
+                    text-align: center;
+                    font-size: 20px;
+                    font-weight: bold;
+                    margin-bottom: 20px;
+                }
+                &_item {
+                    margin-bottom: 20px;
+                    &_button {
+                        text-align: center;
+                        button {
+                            height: 40px;
+                            border-radius: 12px;
+                            background-color: green;
+                            border-style: none;
+                            color: white;
+                            font-size: 18px;
+                            &:hover {
+                                background-color: greenyellow;
+                            }
+                        }
+                    }
+                }
+                &_label {
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: gray;
+                    margin-right: 20px;
+                }
+                input:focus {
+                    outline: none;
+                }
+                &_input {
+                    width: 100%;
+                    border-top-style: hidden;
+                    border-right-style: hidden;
+                    border-left-style: hidden;
+                }
+                &_upload {
+                    padding: 10px;
+                    text-align: center;
+                    border: 1px solid  rgb(223, 217, 217);
+                    &_file {
+                        width: 90px;
+                        padding: 5px 10px;
+                        border: 1px solid white;
+                        border-radius: 16px;
+                        background-color: skyblue;
+                        color: white;
+                        font-size: 20px;
+                        font-weight: bold;
+                        cursor: pointer;
+                        &:hover {
+                            background-color:deepskyblue;
+                        }
+                        &_nameFile {
+                            height: 44px;
+                            margin: 20px 0px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            color: gray;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+
+        .pageDetail {
+            height: 80vh;
+            padding-top: 120px;
+            &_row {
+                display: flex;
+                align-items: flex-end;
+                &_type {
+                    font-weight: bold;
+                    font-size: 18px;
+                }
+                &_text {
+                    font-size: 16px;
+                    margin-left: 10px;
+                }
+            }
+            &_img {
+                width: 100%;
+                margin-top: 20px;
+                img {
+                    height: 675px;
+                    object-fit: cover;
+                }
+            }
+
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            padding: 4px;
+            font-size: 10px;
+        }
+    }
+}
