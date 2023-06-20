@@ -196,7 +196,7 @@ const PageUpload = () => {
                 style={customStylesModalDone}
             >
                 <div className='Modal'>
-                    <button className='Modal_button' onClick={closeModalErr}>X</button>
+                    <button className='Modal_button' onClick={closeModalDone}>X</button>
                     <div className='Modal_text_done'>Image has been added</div>
                 </div>
             </Modal>
